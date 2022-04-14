@@ -1,11 +1,11 @@
-local t = import 'kube-thanos/thanos.libsonnet';
+local t = import 'jsonnet/kube-thanos/thanos.libsonnet';
 
 // For an example with every option and component, please check all.jsonnet
 
 local commonConfig = {
   config+:: {
     local cfg = self,
-    namespace: 'thanos',
+    namespace: 'monitoring',
     version: 'v0.24.0',
     image: 'quay.io/thanos/thanos:' + cfg.version,
     imagePullPolicy: 'IfNotPresent',

@@ -1,4 +1,4 @@
-local defaults = import 'kube-thanos/kube-thanos-receive-default-params.libsonnet';
+local defaults = import './kube-thanos-receive-default-params.libsonnet';
 
 function(params) {
   local tr = self,

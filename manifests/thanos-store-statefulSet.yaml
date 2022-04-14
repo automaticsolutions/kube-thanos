@@ -7,7 +7,7 @@ metadata:
     app.kubernetes.io/name: thanos-store
     app.kubernetes.io/version: v0.24.0
   name: thanos-store
-  namespace: thanos
+  namespace: monitoring
 spec:
   replicas: 1
   selector:
@@ -39,7 +39,7 @@ spec:
                   values:
                   - thanos-store
               namespaces:
-              - thanos
+              - monitoring
               topologyKey: kubernetes.io/hostname
             weight: 100
       containers:
@@ -57,7 +57,7 @@ spec:
           valueFrom:
             secretKeyRef:
               key: thanos.yaml
-              name: thanos-objectstorage
+              name: thanos-objstore-config
         - name: HOST_IP_ADDRESS
           valueFrom:
             fieldRef:
@@ -110,4 +110,4 @@ spec:
       - ReadWriteOnce
       resources:
         requests:
-          storage: 10Gi
+          storage: 1Gi

@@ -1,4 +1,4 @@
-local t = import 'kube-thanos/thanos.libsonnet';
+local t = import 'jsonnet/kube-thanos/thanos.libsonnet';
 
 // THIS IS MERELY AN EXAMPLE MEANT TO SHOW HOW TO USE ALL COMPONENTS!
 // Neither this example nor its manifests in examples/all/manifests/ are meant to ever be run.
@@ -10,7 +10,7 @@ local commonConfig = {
   image: 'quay.io/thanos/thanos:' + cfg.version,
   replicaLabels: ['prometheus_replica', 'rule_replica'],
   objectStorageConfig: {
-    name: 'thanos-objectstorage',
+    name: 'thanos-objstore-config',
     key: 'thanos.yaml',
     tlsSecretName: '',
     tlsSecretMountPath: '',
@@ -24,7 +24,7 @@ local commonConfig = {
       accessModes: ['ReadWriteOnce'],
       resources: {
         requests: {
-          storage: '10Gi',
+          storage: '1Gi',
         },
       },
     },
@@ -56,7 +56,7 @@ local br = t.bucketReplicate(commonConfig {
   // Use the same object storage secret as an example.
   // Need to use another one in real cases.
   objectStorageToConfig: {
-    name: 'thanos-objectstorage',
+    name: 'thanos-objstore-config',
     key: 'thanos.yaml',
   },
   compactionLevels: [1, 2, 3],

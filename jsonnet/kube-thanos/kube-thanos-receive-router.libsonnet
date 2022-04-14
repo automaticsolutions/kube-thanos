@@ -1,4 +1,4 @@
-local receiveConfigDefaults = import 'kube-thanos/kube-thanos-receive-default-params.libsonnet';
+local receiveConfigDefaults = import './kube-thanos-receive-default-params.libsonnet';
 
 local defaults = receiveConfigDefaults {
   hashrings: [{
