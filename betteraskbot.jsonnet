@@ -47,7 +47,7 @@ local s = t.store(commonConfig.config {
 
 local q = t.query(commonConfig.config {
   replicas: 1,
-  replicaLabels: ['prometheus_replica', 'rule_replica'],
+  replicaLabels: ['operator.prometheus.io/shard', 'prometheus_replica', 'rule_replica'],
   serviceMonitor: true,
   stores: [s.storeEndpoint, 'dnssrv+_grpc._tcp.prometheus-operated.monitoring.svc.cluster.local:10901'] + i.storeEndpoints,
 });
